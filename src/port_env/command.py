@@ -46,15 +46,16 @@ def _fix_paths(old_env, new_env, bin_path, _test=False):
     for _path in glob.glob(bin_path + "/*"):
         # yes, I will use mocks if it gets bigger
         # (probably)
-        to_cli = "" if not _test else " w /dev/stdout"
+        _write_out = "" if not _test else " w /dev/stdout"
+        _commit = "-i" if not _test else "-n"
         res.append(
             exc_cmd(
                 "sed",
                 # NOTE Used a new character delimiter "~" to avoid escaping "/"
                 # and remember that sed also uses {} so no f""
                 r's~%s~%s~'
-                % (old_env, new_env),
-                "-i",
+                % (old_env, new_env) + _write_out,
+                _commit,
                 _path,
             )
         )

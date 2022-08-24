@@ -1,1 +1,2 @@
-include src/cpm/logs/*.txt
+include requirements.txt
+include README.md

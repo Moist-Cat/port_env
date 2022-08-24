@@ -9,7 +9,7 @@ with open("requirements.txt") as file:
 
 setuptools.setup(
      name="port_env",
-     version="0.1.1",
+     version="0.0.2",
      author="Moist-Cat",
      author_email="moistanonpy@gmail.com",
      description="Make environments portable",
