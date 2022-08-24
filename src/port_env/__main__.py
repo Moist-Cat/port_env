@@ -6,6 +6,7 @@ from port_env import command
 
 
 def get_command(argv: List[str] = sys.argv[1:]): # pylint: disable=W0102
+    """Get and parse command"""
     parser = argparse.ArgumentParser(description="Fix python virtual envionments after being moved")
     parser.set_defaults(func=command.main)
 
