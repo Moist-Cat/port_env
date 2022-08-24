@@ -24,7 +24,7 @@ setuptools.setup(
      python_requires=">=3",
      classifiers=[
          "Programming Language :: Python :: 3",
-          "Operating System :: Linux",
+         "Operating System :: POSIX :: Linux",
          "License :: OSI Approved :: MIT License",
      ],
  )
