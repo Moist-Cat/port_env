@@ -1,5 +1,6 @@
 import unittest
 from pathlib import Path
+import sys
 
 from port_env import command
 
@@ -19,10 +20,14 @@ class TestCmd(unittest.TestCase):
 
     def test_fix_paths(self):
         res = command._fix_paths(
-            r"/home/anon/bad/path/env".replace("/", "\/"),
-            r"/home/anon/good/path/env".replace("/", "\/"),
+            r"/home/anon/bad/path/env",
+            r"/home/anon/good/path/env",
             str(TEST_FILES / "bin"),
             _test=True,
         )
 
-        assert "/home/anon/good/path/env" in res[0]
+        self.assertIn("/home/anon/good/path/env", res[0])
+
+    def test_site_packages(self):
+        ver = "python" + ".".join(sys.version.split(".")[:2])
+        self.assertEqual(command.fix_third_party(self.path, _test=True), self.path / "lib" / ver)
