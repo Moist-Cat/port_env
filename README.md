@@ -12,6 +12,11 @@ This command line utility wraps a few of the main GNU coreutils (awk, sed) to fi
 2. python3 (no third party dependencies are needed for now)
 
 # Install
+From pipy
+
+    pip install port_env
+
+From source
 
     python setup.py bdist_wheel
     pip install dist/*
