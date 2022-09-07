@@ -34,6 +34,10 @@ def _old_env(activate_path: Path) -> Path:
     out = exc_cmd("awk", r'BEGIN {FS="\x3D"} /^VIRTUAL_ENV/ {print $2}', activate_path)
 
     old_env = Path(out.strip().strip('"').strip("'"))
+    # see https://github.com/Moist-Cat/port_env/issues/1
+    # we are getting old/path/env
+    # we want old/path -- the root
+    old_env = old_env.parent
 
     assert old_env, "There is no VIRTUAL_ENV variable in your activate script."
 
@@ -93,7 +97,8 @@ def fix_third_party(path, _test=False):
 
 def fix_env(path: Path):
     """Wrapper. Gets the old env and globally replaces it by the new one"""
-    new_env = path.absolute()
+    # see #1
+    new_env = path.absolute().parent
     bin_path = path / "bin"
     activate_path = bin_path / "activate"
 
